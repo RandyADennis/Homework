@@ -1,0 +1,39 @@
+puts "How many quiz questions would you like to make?"
+number_of_questions = gets.chomp.to_i
+​
+questions_created_count = 0
+​
+#array of questions and answers for the quiz
+quiz = []
+​
+while questions_created_count != number_of_questions
+	#create 1 quiz item hash
+	quiz_item = {}
+	
+	#ask and save the question to the hash
+	puts "What is question number #{questions_created_count + 1}?"
+	quiz_item[:question] = gets.chomp 
+	
+	#ask for and save the answer to the hash
+	puts "what is the answer to that question?"
+	quiz_item[:answer] = gets.chomp
+	
+	#add the new question and answer to the quiz
+	quiz.push(quiz_item)
+	
+	#bump the count up by one
+	questions_created_count = questions_created_count + 1
+end
+​
+score = 0
+​
+quiz.each do |q|
+	puts "question is #{q[:question]}.  What is your answer?"
+	if gets.chomp.downcase == q[:answer].downcase
+		score = score + 1
+		puts "correct!"
+	else
+		puts "incorrect"
+	end
+end
+puts "You scored #{score} out of #{quiz.length}" 
